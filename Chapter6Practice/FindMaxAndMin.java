@@ -19,5 +19,22 @@ public class FindMaxAndMin
         }
         return largest;
     }    
-
+    
+    public static double findMin()
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter a series of number or any character to quit");
+        
+        double min = scan.nextDouble();
+        
+        while(scan.hasNextDouble())
+        {
+            double input = scan.nextDouble();
+            if(input < min)
+            {
+                min = input;
+            }    
+        }
+        return min;
+    } 
 }

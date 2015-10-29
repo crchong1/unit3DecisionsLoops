@@ -7,9 +7,14 @@ public class Substring
         System.out.println("Type your word here");
         String word = scan.next();
         
-        for(int i =0; i < word.length(); i++)
+        for(int start =0; start <= word.length(); start++)
         {
-            word.charAt(i);
+            int end = start+1;
+            while (end <= word.length())
+            {
+                   System.out.println(word.substring(start, end));
+                   end ++;    
+            }    
         }
     }
 }

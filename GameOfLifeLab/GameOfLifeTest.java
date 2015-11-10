@@ -46,13 +46,16 @@ public class GameOfLifeTest
         /* expected pattern for initial state
          *  (X: alive; -: dead)
          * 
-         *    0 1 2 3 4
-         *  0 - - - - -
-         *  1 - - - - -
-         *  2 X X X X X
-         *  3 - - - - -
-         *  4 - - - - -
-         *  
+         *    0 1 2 3 4 5 6 7 8
+         *  0 - - - - - - - - -
+         *  1 - - - - - - - - -
+         *  2 - - - - - - - - -
+         *  3 - - - - - - - - -
+         *  4 X X X X X X X X X
+         *  5 - - - - - - - - -
+         *  6 - - - - - - - - -
+         *  7 - - - - - - - - -
+         *  8 - - - - - - - - -
          */
         
         GameOfLife game = new GameOfLife();
@@ -67,7 +70,7 @@ public class GameOfLifeTest
                 Actor cell = game.getActor(row, col);
 
                 // if the cell at the current row and col should be alive, assert that the actor is not null
-                if(row == 2) 
+                if(row == 4) 
                 {
                     assertNotNull("expected alive cell at (" + row + ", " + col + ")", cell);
                 }
@@ -78,7 +81,53 @@ public class GameOfLifeTest
             }
         }
     }
+/*
+    @Test
+    public void testState1()
+    {        
+        for(int row = 0; row < ROWS; row++)
+        {
+            for(int col = 0; col < COLS; col++)
+            {
+                // in this example, an alive cell has a non-null actor and a dead cell has a null actor
+                Actor cell = game.getActor(row, col);
 
+                // if the cell at the current row and col should be alive, assert that the actor is not null
+                if( (row = 3 && column = 1) ||
+                    (row = 3 && column = 2) ||
+                    (row = 3 && column = 3) ||
+                    (row = 3 && column = 4) ||
+                    (row = 3 && column = 5) ||
+                    (row = 3 && column = 6) ||
+                    (row = 3 && column = 7) ||
+                    (row = 4 && column = 1) ||
+                    (row = 4 && column = 2) ||
+                    (row = 4 && column = 3) ||
+                    (row = 4 && column = 4) ||
+                    (row = 4 && column = 5) ||
+                    (row = 4 && column = 6) ||
+                    (row = 4 && column = 7) ||
+                    (row = 5 && column = 1) ||
+                    (row = 5 && column = 2) ||
+                    (row = 5 && column = 3) ||
+                    (row = 5 && column = 4) ||
+                    (row = 5 && column = 5) ||
+                    (row = 5 && column = 6) ||
+                    (row = 5 && column = 7) ||
+                
+                ) 
+                {
+                    assertNotNull("expected alive cell at (" + row + ", " + col + ")", cell);
+                }
+                else // else, the cell should be dead; assert that the actor is null
+                {
+                    assertNull("expected dead cell at (" + row + ", " + col + ")", cell);
+                }
+            }
+        }
+    }
+    
+*/
     @Test
     public void testFinalState()
     {

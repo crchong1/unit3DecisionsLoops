@@ -50,7 +50,7 @@ public class GameOfLife
      * @post    all actors that comprise the initial state of the game have been added to the grid
      * 
      */
-    private void populateGame()
+    public void populateGame()
     {
         // constants for the location of the three cells initially alive
         final int X1 = 0, Y1 = 4;
@@ -110,7 +110,7 @@ public class GameOfLife
      * @post    the world has been populated with a new grid containing the next generation
      * 
      */
-    private void createNextGeneration()
+    public void createNextGeneration()
     {
         /** You will need to read the documentation for the World, Grid, and Location classes
          *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
@@ -119,7 +119,85 @@ public class GameOfLife
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
         
-        // insert magic here...
+        for(int rows = 1; rows <= ROWS; rows++)
+        {
+            for(int col = 1; col <= COLS; col++)
+            {
+                int counter = 8;
+                Rock checkRock = getRock(rows, col);
+                if(checkRock.equals(null))
+                {
+                    
+                }
+                else
+                {
+                    Rock check1 = getRock(rows - 1, col);
+                    Rock check2 = getRock(rows - 1, col-1);
+                    Rock check3 = getRock(rows - 1, col+1);
+                    Rock check4 = getRock(rows, col-1);
+                    Rock check5 = getRock(rows, col+1);
+                    Rock check6 = getRock(rows + 1, col);
+                    Rock check7 = getRock(rows + 1, col-1);
+                    Rock check8 = getRock(rows + 1, col+1);
+                    
+                    if(check1.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                    if(check2.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                    if(check3.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                    if(check4.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                    if(check5.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                    if(check6.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                    if(check7.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                    if(check8.equals(null))
+                    {
+                        counter = counter - 1;
+                    }
+                }
+                
+                if(6<=counter && counter<=8)
+                {
+                    
+                }
+                else if(6<=counter && counter<=8)
+                {
+                    
+                }
+                if(6<=counter && counter<=8)
+                {
+                    
+                }
+                if(6<=counter && counter<=8)
+                {
+                    
+                }
+               
+               
+               
+            }
+        }
+        
+        
+        
         
     }
     
@@ -131,11 +209,11 @@ public class GameOfLife
      * @pre     the grid has been created
      * @return  the actor at the specified row and column
      */
-    public Actor getActor(int row, int col)
+    public Rock getRock(int row, int col)
     {
         Location loc = new Location(row, col);
-        Actor actor = world.getGrid().get(loc);
-        return actor;
+        Rock rock = (Rock) world.getGrid().get(loc);
+        return rock;
     }
 
     /**
@@ -166,6 +244,12 @@ public class GameOfLife
     public static void main(String[] args)
     {
         GameOfLife game = new GameOfLife();
+        
+        
+        
+        
+        
+        
     }
 
 }

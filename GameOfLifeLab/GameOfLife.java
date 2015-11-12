@@ -125,21 +125,14 @@ public class GameOfLife
             {
                 int counter = 8;
                 Rock checkRock = getRock(rows, col);
-                if(checkRock.equals(null))
-                {
-                    
-                }
-                else
-                {
-                    Rock check1 = getRock(rows - 1, col);
-                    Rock check2 = getRock(rows - 1, col-1);
-                    Rock check3 = getRock(rows - 1, col+1);
-                    Rock check4 = getRock(rows, col-1);
-                    Rock check5 = getRock(rows, col+1);
-                    Rock check6 = getRock(rows + 1, col);
-                    Rock check7 = getRock(rows + 1, col-1);
-                    Rock check8 = getRock(rows + 1, col+1);
-                    
+                Rock check1 = getRock(rows - 1, col);
+                Rock check2 = getRock(rows - 1, col-1);
+                Rock check3 = getRock(rows - 1, col+1);
+                Rock check4 = getRock(rows, col-1);
+                Rock check5 = getRock(rows, col+1);
+                Rock check6 = getRock(rows + 1, col);
+                Rock check7 = getRock(rows + 1, col-1);
+                Rock check8 = getRock(rows + 1, col+1);  
                     if(check1.equals(null))
                     {
                         counter = counter - 1;
@@ -172,26 +165,30 @@ public class GameOfLife
                     {
                         counter = counter - 1;
                     }
+                if(checkRock.equals(null))        
+                {
+                    checkRock.putSelfInGrid(rows, col); 
+                }
+                else
+                {
+                     if(7<=counter && counter<=8)
+                     {
+                          // Rock dies from underpopulation
+                          checkRock.removeSelfFromGrid();
+                     }
+                     else if(5<=counter && counter<=6)
+                     {
+                          // Rock stays
+                     }
+                     else if(0<=counter && counter<=4)
+                     {
+                          // Rock dies from overpopulation
+                          checkRock.removeSelfFromGrid();
+                     }   
+                    
                 }
                 
-                if(6<=counter && counter<=8)
-                {
-                    
-                }
-                else if(6<=counter && counter<=8)
-                {
-                    
-                }
-                if(6<=counter && counter<=8)
-                {
-                    
-                }
-                if(6<=counter && counter<=8)
-                {
-                    
-                }
-               
-               
+                          
                
             }
         }

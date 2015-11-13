@@ -118,83 +118,21 @@ public class GameOfLife
         
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
-        
+        Grid<Actor> grid2 = world.getGrid();
         for(int rows = 1; rows <= ROWS; rows++)
         {
-            for(int col = 1; col <= COLS; col++)
+            for(int cols = 1; cols <= COLS; cols++)
             {
-                int counter = 8;
-                Rock checkRock = getRock(rows, col);
-                Rock check1 = getRock(rows - 1, col);
-                Rock check2 = getRock(rows - 1, col-1);
-                Rock check3 = getRock(rows - 1, col+1);
-                Rock check4 = getRock(rows, col-1);
-                Rock check5 = getRock(rows, col+1);
-                Rock check6 = getRock(rows + 1, col);
-                Rock check7 = getRock(rows + 1, col-1);
-                Rock check8 = getRock(rows + 1, col+1);  
-                    if(check1.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                    if(check2.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                    if(check3.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                    if(check4.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                    if(check5.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                    if(check6.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                    if(check7.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                    if(check8.equals(null))
-                    {
-                        counter = counter - 1;
-                    }
-                if(checkRock.equals(null))        
-                {
-                    checkRock.putSelfInGrid(rows, col); 
-                }
-                else
-                {
-                     if(7<=counter && counter<=8)
-                     {
-                          // Rock dies from underpopulation
-                          checkRock.removeSelfFromGrid();
-                     }
-                     else if(5<=counter && counter<=6)
-                     {
-                          // Rock stays
-                     }
-                     else if(0<=counter && counter<=4)
-                     {
-                          // Rock dies from overpopulation
-                          checkRock.removeSelfFromGrid();
-                     }   
-                    
-                }
+                Rock testRock = this.getRock(rows, cols);
+                Location loc = testRock.getLocation();
+                ArrayList<Actor> neighbors = grid.getNeighbors(loc);
                 
-                          
-               
+                
             }
         }
         
         
-        
+        world.setGrid(grid2);
         
     }
     

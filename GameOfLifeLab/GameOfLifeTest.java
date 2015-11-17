@@ -67,7 +67,7 @@ public class GameOfLifeTest
             for(int col = 0; col < COLS; col++)
             {
                 // in this example, an alive cell has a non-null actor and a dead cell has a null actor
-                Actor cell = game.getActor(row, col);
+                Rock cell = game.getRock(row, col);
 
                 // if the cell at the current row and col should be alive, assert that the actor is not null
                 if(row == 4) 
@@ -134,7 +134,8 @@ public class GameOfLifeTest
         /* verify that the actual pattern matches the expected pattern after 3 generations         *  
          */
         
-        // ...
+        
+        
     }
 }
 

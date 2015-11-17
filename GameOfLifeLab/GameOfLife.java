@@ -4,7 +4,8 @@ import info.gridworld.actor.Rock;
 import info.gridworld.grid.Grid;
 import info.gridworld.grid.BoundedGrid;
 import info.gridworld.grid.Location;
-
+import java.util.ArrayList;
+import java.util.Random;
 /**
  * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
  * Also demonstrates how to provide accessor methods to make the class testable by unit tests.
@@ -17,9 +18,9 @@ public class GameOfLife
     // the world comprised of the grid that displays the graphics for the game
     private ActorWorld world;
     
-    // the game board will have 8 rows and 8 columns
-    private final int ROWS = 8;
-    private final int COLS = 8;
+    // the game board will have 18 rows and 18 columns
+    private final int ROWS = 18;
+    private final int COLS = 18;
     
     /**
      * Default constructor for objects of class GameOfLife
@@ -100,6 +101,14 @@ public class GameOfLife
         Location loc8 = new Location(Y8, X8);
         grid.put(loc8, rock8);
         
+        Random randomNumber = new Random();
+        for (int rows = 1; rows <= ROWS; rows++)
+        {
+            for(int cols = 1; cols <= COLS; cols++)
+            {
+                
+            }
+        }
     }
 
     /**
@@ -118,22 +127,41 @@ public class GameOfLife
         
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
-        Grid<Actor> grid2 = world.getGrid();
-        for(int rows = 1; rows <= ROWS; rows++)
+        Grid<Actor> grid2 = new BoundedGrid<Actor>(ROWS, COLS);
+        for(int rows = 0; rows < ROWS; rows++)
         {
-            for(int cols = 1; cols <= COLS; cols++)
+            for(int cols = 0; cols < COLS; cols++)
             {
-                Rock testRock = this.getRock(rows, cols);
-                Location loc = testRock.getLocation();
-                ArrayList<Actor> neighbors = grid.getNeighbors(loc);
                 
+                Location loc = new Location(rows, cols);
+                ArrayList<Actor> neighbors = grid.getNeighbors(loc);
+                int numberOfNeighbors = neighbors.size();
+                if (grid.get(loc) == null) // if place is unoccupied
+                {
+                    if(numberOfNeighbors == 3)
+                    {
+                        // puts a new rock into grid2
+                        Rock newRock = new Rock();
+                        grid2.put(loc, newRock);
+                    }    
+                }
+                else
+                {
+                    if(numberOfNeighbors >= 2 && numberOfNeighbors <= 3)
+                    {
+                        Rock newRock = new Rock();
+                        grid2.put(loc, newRock);
+                    }
+                    else
+                    {
+                        // removes rock from grid
+                    }
+                }
                 
             }
         }
-        
-        
         world.setGrid(grid2);
-        
+        world.show();
     }
     
     /**
@@ -176,14 +204,15 @@ public class GameOfLife
      * Creates an instance of this class. Provides convenient execution.
      *
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
         GameOfLife game = new GameOfLife();
         
-        
-        
-        
-        
+        for(int i=1; i < 100; i++)
+        {
+            Thread.sleep(500);
+            game.createNextGeneration();
+        }
         
     }
 

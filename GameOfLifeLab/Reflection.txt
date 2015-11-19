@@ -1,0 +1,7 @@
+Game Of Life- Reflection Document
+By Connor Chong
+
+Throughout this Game of Life, I was mainly blown away at the (ingenious) solution of having two grids. 
+It was like almost a new way of thinking to solve different problems. Overall, I enjoyed the lab,
+even though at first the documentation was pretty fustrating. I think it was a good idea to hand trace
+the solution. 

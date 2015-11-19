@@ -10,7 +10,7 @@ import java.util.Random;
  * Game of Life starter code. Demonstrates how to create and populate the game using the GridWorld framework.
  * Also demonstrates how to provide accessor methods to make the class testable by unit tests.
  * 
- * @author @gcschmit
+ * @author @gcschmit @ConnorChong
  * @version 18 July 2014
  */
 public class GameOfLife
@@ -18,7 +18,7 @@ public class GameOfLife
     // the world comprised of the grid that displays the graphics for the game
     private ActorWorld world;
     
-    // the game board will have 18 rows and 18 columns
+    // the game board will have 19 rows and 19 columns, but use 18 because colums and rows start from 0
     private final int ROWS = 18;
     private final int COLS = 18;
     
@@ -53,7 +53,7 @@ public class GameOfLife
      */
     public void populateGame()
     {
-        // constants for the location of the three cells initially alive
+        // constants for the location of the 8 rocks initially alive
         final int X1 = 0, Y1 = 4;
         final int X2 = 1, Y2 = 4;
         final int X3 = 2, Y3 = 4;
@@ -68,7 +68,7 @@ public class GameOfLife
         //  (alive cells contains actors; dead cells do not)
         Grid<Actor> grid = world.getGrid();
         
-        // create and add rocks (a type of Actor) to the three intial locations
+        // create and add rocks (a type of Actor) to the 8 intial locations
         Rock rock1 = new Rock();
         Location loc1 = new Location(Y1, X1);
         grid.put(loc1, rock1);
@@ -101,14 +101,7 @@ public class GameOfLife
         Location loc8 = new Location(Y8, X8);
         grid.put(loc8, rock8);
         
-        Random randomNumber = new Random();
-        for (int rows = 1; rows <= ROWS; rows++)
-        {
-            for(int cols = 1; cols <= COLS; cols++)
-            {
-                
-            }
-        }
+       
     }
 
     /**
@@ -122,20 +115,20 @@ public class GameOfLife
     public void createNextGeneration()
     {
         /** You will need to read the documentation for the World, Grid, and Location classes
-         *      in order to implement the Game of Life algorithm and leverage the GridWorld framework.
+         *  in order to implement the Game of Life algorithm and leverage the GridWorld framework.
          */
         
         // create the grid, of the specified size, that contains Actors
         Grid<Actor> grid = world.getGrid();
         Grid<Actor> grid2 = new BoundedGrid<Actor>(ROWS, COLS);
-        for(int rows = 0; rows < ROWS; rows++)
+        for(int rows = 0; rows < ROWS; rows++) // for loop for the rows
         {
-            for(int cols = 0; cols < COLS; cols++)
+            for(int cols = 0; cols < COLS; cols++) // for loop for the columns
             {
-                
+                // create location object at that location
                 Location loc = new Location(rows, cols);
-                ArrayList<Actor> neighbors = grid.getNeighbors(loc);
-                int numberOfNeighbors = neighbors.size();
+                ArrayList<Actor> neighbors = grid.getNeighbors(loc); // get the number of neighbors from the grid
+                int numberOfNeighbors = neighbors.size(); // gets the size of neighbors
                 if (grid.get(loc) == null) // if place is unoccupied
                 {
                     if(numberOfNeighbors == 3)
@@ -145,12 +138,12 @@ public class GameOfLife
                         grid2.put(loc, newRock);
                     }    
                 }
-                else
+                else // else there is a rock at that point
                 {
                     if(numberOfNeighbors >= 2 && numberOfNeighbors <= 3)
                     {
                         Rock newRock = new Rock();
-                        grid2.put(loc, newRock);
+                        grid2.put(loc, newRock); // put a new rock
                     }
                     else
                     {
@@ -160,7 +153,7 @@ public class GameOfLife
                 
             }
         }
-        world.setGrid(grid2);
+        world.setGrid(grid2); // replace the grid with grid2 to update the entire grid
         world.show();
     }
     
@@ -206,12 +199,12 @@ public class GameOfLife
      */
     public static void main(String[] args) throws InterruptedException
     {
-        GameOfLife game = new GameOfLife();
+        GameOfLife game = new GameOfLife(); //create game
         
-        for(int i=1; i < 100; i++)
+        for(int i=1; i <= 100; i++) // for loop for 100 generations
         {
-            Thread.sleep(500);
-            game.createNextGeneration();
+            Thread.sleep(500); // delay 1/2 second
+            game.createNextGeneration(); //get the next generation
         }
         
     }
